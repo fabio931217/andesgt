@@ -17,8 +17,7 @@ import urllib.parse
 import base64
 import logging
 from datetime import datetime, timedelta
-from sentiment_analysis_spanish import sentiment_analysis
-sentiment = sentiment_analysis.SentimentAnalysisSpanish()
+
 #Logs y time de inicio
 db = SQLAlchemy()
 now = datetime.now() # current date and time

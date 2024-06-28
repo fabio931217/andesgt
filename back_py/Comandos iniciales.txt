@@ -23,12 +23,11 @@ pip install pymysql
 pip install pybase64
 pip install PyJWT
 pip install -U scikit-learn
-pip install sentiment-analysis-spanish
-pip install keras tensorflow
-
+pip install pysentimiento
+pip install transformers
 pip install mysql-connector-python
 pip install SQLAlchemy
-pip install -v scikit-learn==0.23
+
 
 #Validamos instalacion
 pip list
