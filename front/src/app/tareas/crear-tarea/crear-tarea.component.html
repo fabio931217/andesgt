@@ -1,0 +1,37 @@
+<button style="float: right;" mat-icon-button mat-dialog-close>
+    <mat-icon>cancel</mat-icon>
+</button>
+<form class="containerDialog" [formGroup]="itemForm" >
+    <h2>{{titleModal}}</h2>
+
+    <mat-form-field class="input-full w-100">
+        <mat-label>Titulo</mat-label>
+        <input matInput placeholder="Titulo..." formControlName="titulo" value="{{dataRow.titulo}}">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+
+    <mat-form-field class="textarea-full w-100">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Descripción..." formControlName="descripcion" value="{{dataRow.descripcion}}"></textarea>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    
+    <mat-form-field class="date-full w-100">
+        <mat-label>Fecha de vencimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha_vence" value="{{dataRow.fecha_vence}}">
+
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+
+    <div class="btns-dialog">
+        <button *ngIf="insert === true" mat-flat-button class="btn" type="button" (click)="guardarForm(itemForm)" color="primary"  [disabled]="itemForm.invalid">Guardar</button>
+        <button *ngIf="insert === false" mat-flat-button class="btn" type="button" (click)="actualizarForm(itemForm)" color="primary"  [disabled]="itemForm.invalid">Actualizar</button>
+        <button mat-flat-button class="btn" (click)="itemRef.close()" type="button">Cancelar</button>
+        
+    </div>
+</form>

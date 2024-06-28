@@ -1,0 +1,56 @@
+<div class="container">
+    
+    <mat-grid-list cols="12" rowHeight="2:1">
+        <mat-grid-tile><a mat-flat-button [routerLink]="'/tareas'" routerLinkActive="is-active">Ir a Tareas</a> </mat-grid-tile>
+        <mat-grid-tile><a mat-flat-button [routerLink]="'/test_ia'" routerLinkActive="is-active">Ir a Test IA</a> </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="header">
+        <h1>Gestión de productos</h1>
+        <p>En este espacio podrás gestionar los productos del sistema</p>
+    </div>
+
+    <button mat-fab extended (click)="ActivarModal(0,1)" color="primary">
+        <mat-icon>add</mat-icon>
+        Crear registro
+    </button>
+
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="accion">
+            <th class="start" mat-header-cell *matHeaderCellDef class="negrita">Acciones</th>
+            <td mat-cell *matCellDef="let row">
+            <button *ngIf="row.state === 1" mat-icon-button (click)="ConfirmEliminar(row.id, 0)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="ActivarModal(row.id, 2)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Nombre</th>
+            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Descripción</th>
+            <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Precio</th>
+            <td mat-cell *matCellDef="let row"> {{row.precio}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay datos</td>
+        </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" (page)="pageEvent($event)"
+        [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+    </div>
+</div>

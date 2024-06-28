@@ -1,0 +1,35 @@
+<button style="float: right;" mat-icon-button mat-dialog-close>
+    <mat-icon>cancel</mat-icon>
+</button>
+<form class="containerDialog" [formGroup]="itemForm" >
+    <h2>{{titleModal}}</h2>
+
+    <mat-form-field class="input-full w-100">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Nombre..." formControlName="nombre">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+
+    <mat-form-field class="textarea-full w-100">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Descripción..." formControlName="descripcion"></textarea>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    
+    <mat-form-field class="input-full w-100">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number"  placeholder="Precio..." formControlName="precio">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+
+
+    <div class="btns-dialog">
+        <button *ngIf="insert === true" mat-flat-button class="btn" type="button" (click)="guardarForm(itemForm)" color="primary"  [disabled]="itemForm.invalid">Guardar</button>
+        <button *ngIf="insert === false" mat-flat-button class="btn" type="button" (click)="actualizarForm(itemForm)" color="primary"  [disabled]="itemForm.invalid">Actualizar</button>
+        <button mat-flat-button class="btn" (click)="itemRef.close()" type="button">Cancelar</button>
+        
+    </div>
+</form>

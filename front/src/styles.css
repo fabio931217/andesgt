@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.w-100{
+    width: 100%;
+}
+.btns-dialog{
+    margin-top: 20px;
+    margin: 5px;
+}
+.btn{
+    margin: 5px;
+}
+
+.containerDialog{
+    padding: 20px;
+}
+
+.container{
+    padding: 50px;
+}

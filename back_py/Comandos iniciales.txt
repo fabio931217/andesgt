@@ -1,0 +1,38 @@
+1. instalar python
+
+#Instalamos el virutal
+#pip install virutalenv
+
+#Creamos el entorno virtual
+python -m venv  venv
+
+
+#Activamos el entorno
+.\venv\Scripts\activate
+
+#Instalamos librerias
+pip install flask 
+pip install flask_cors 
+pip install flask-sqlalchemy
+pip install flask-restful
+pip install python-dotenv
+pip install pandas
+pip install DateTime
+pip install threaded
+pip install pymysql
+pip install pybase64
+pip install PyJWT
+pip install -U scikit-learn
+pip install sentiment-analysis-spanish
+pip install keras tensorflow
+
+pip install mysql-connector-python
+pip install SQLAlchemy
+pip install -v scikit-learn==0.23
+
+#Validamos instalacion
+pip list
+
+
+#Ejecutamos la app
+python .\src\app.py 

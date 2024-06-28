@@ -1,0 +1,83 @@
+<div class="container">
+    
+    <mat-grid-list cols="12" rowHeight="2:1">
+        <mat-grid-tile><a mat-flat-button [routerLink]="'/productos'" routerLinkActive="is-active">Ir a Productos</a> </mat-grid-tile>
+        <mat-grid-tile><a mat-flat-button [routerLink]="'/test_ia'" routerLinkActive="is-active">Ir a Test IA</a> </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="header">
+        <h1>Gestión de tareas</h1>
+        <p>En este espacio podrás gestionar las tareas del sistema</p>
+    </div>
+
+    <button mat-fab extended (click)="ActivarModal(0,1)" color="primary">
+        <mat-icon>add</mat-icon>
+        Crear registro
+    </button>
+
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="accion">
+            <th class="start" mat-header-cell *matHeaderCellDef class="negrita">Acciones</th>
+            <td mat-cell *matCellDef="let row">
+            <button *ngIf="row.state === 1" mat-icon-button (click)="ConfirmEliminar(row.id, 0)">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+            <button mat-icon-button (click)="ActivarModal(row.id, 2)">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Titulo</th>
+            <td mat-cell *matCellDef="let row"> {{row.titulo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Descripción</th>
+            <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="fecha_vence">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">Fecha vencimiento</th>
+            <td mat-cell *matCellDef="let row"> {{row.fecha_vence}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="negrita">¿Culminada?</th>
+            <td mat-cell *matCellDef="let row"> 
+
+                <mat-slide-toggle
+                        class="checked"
+                        [checked]="false"
+                        [disabled]="false"
+                        *ngIf="row.id_estado === 1" (click)="Culminar(row.id, 2)">
+                        {{row.estado}}
+                 </mat-slide-toggle>
+
+
+                <mat-slide-toggle
+                        class="checked"
+                        [checked]="true"
+                        [disabled]="false"
+                        *ngIf="row.id_estado === 2" (click)="Culminar(row.id, 1)">
+                        {{row.estado}}
+                 </mat-slide-toggle>
+
+                
+                
+                 </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay datos</td>
+        </tr>
+        </table>
+        <mat-paginator [length]="length" [pageSize]="pageSize" (page)="pageEvent($event)"
+        [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+    </div>
+</div>
